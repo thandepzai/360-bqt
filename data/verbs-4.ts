@@ -66,4 +66,16 @@ export const verbs4: Verb[] = [
   { v1: "redraw", v2: "redrew", v3: "redrawn", ipa: "/ˌriːˈdrɔː/", meaning: "vẽ lại", example: "He redrew the map." },
   { v1: "rehang", v2: "rehung", v3: "rehung", ipa: "/ˌriːˈhæŋ/", meaning: "treo lại", example: "We rehung the curtains." },
   { v1: "rehear", v2: "reheard", v3: "reheard", ipa: "/ˌriːˈhɪər/", meaning: "nghe lại, xét lại", example: "The case was reheard in court." },
+
+  { v1: "remit", v2: "remitted", v3: "remitted", ipa: "/rɪˈmɪt/", meaning: "chuyển tiền, miễn", example: "He remitted the money home." },
+  { v1: "retake", v2: "retook", v3: "retaken", ipa: "/ˌriːˈteɪk/", meaning: "lấy lại, thi lại", example: "She retook the exam." },
+  { v1: "retell", v2: "retold", v3: "retold", ipa: "/ˌriːˈtel/", meaning: "kể lại", example: "He retold the story." },
+  { v1: "rewake", v2: "rewoke", v3: "rewoken", ipa: "/ˌriːˈweɪk/", meaning: "đánh thức lại", example: "The noise rewoke the baby." },
+  { v1: "shrive", v2: "shrived", v3: "shriven", ipa: "/ʃraɪv/", meaning: "xưng tội", example: "He was shriven by the priest." },
+  { v1: "smell out", v2: "smelt out", v3: "smelt out", ipa: "/smel aʊt/", meaning: "đánh hơi ra", example: "The dog smelt out the truffles." },
+  { v1: "speedread", v2: "speedread", v3: "speedread", ipa: "/ˈspiːdriːd/", meaning: "đọc nhanh", example: "She speedread the article." },
+  { v1: "stand up", v2: "stood up", v3: "stood up", ipa: "/stænd ʌp/", meaning: "đứng dậy, cho leo cây", example: "She stood up for her rights." },
+  { v1: "take off", v2: "took off", v3: "taken off", ipa: "/teɪk ɒf/", meaning: "cất cánh, cởi ra", example: "The plane took off on time." },
+  { v1: "wake up", v2: "woke up", v3: "woken up", ipa: "/weɪk ʌp/", meaning: "thức dậy", example: "I woke up at 6 a.m." },
+  { v1: "wear out", v2: "wore out", v3: "worn out", ipa: "/weər aʊt/", meaning: "mòn, kiệt sức", example: "These shoes wore out quickly." },
 ]

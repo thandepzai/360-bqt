@@ -60,7 +60,25 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
           </div>
         </div>
 
-        <div className="mt-3 -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 sm:-mx-5 sm:px-5 lg:-mx-0 lg:flex-wrap lg:px-0">
+        <div className="relative mt-3 lg:hidden">
+          <div className="scrollbar-hide flex gap-1.5 overflow-x-auto pb-1 pr-8">
+            <Chip active={letter === "ALL"} onClick={() => setLetter("ALL")}>
+              Tất cả
+            </Chip>
+            {letters.map((l) => (
+              <Chip
+                key={l}
+                active={letter === l}
+                onClick={() => setLetter(l)}
+              >
+                {l}
+              </Chip>
+            ))}
+          </div>
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-white/95 to-transparent" />
+        </div>
+
+        <div className="mt-3 hidden flex-wrap gap-1.5 lg:flex">
           <Chip active={letter === "ALL"} onClick={() => setLetter("ALL")}>
             Tất cả
           </Chip>
