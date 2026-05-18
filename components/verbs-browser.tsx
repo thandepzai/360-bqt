@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { Search, X } from "lucide-react"
-import type { Verb } from "@/data/verbs"
-import { getVerbSlug, getInitial } from "@/data/verbs"
-import { cn, normalize } from "@/lib/utils"
+import * as React from "react";
+import Link from "next/link";
+import { Search, X } from "lucide-react";
+import type { Verb } from "@/data/verbs";
+import { getVerbSlug, getInitial } from "@/data/verbs";
+import { cn, normalize } from "@/lib/utils";
 
 export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
-  const [query, setQuery] = React.useState("")
-  const [letter, setLetter] = React.useState<string>("ALL")
+  const [query, setQuery] = React.useState("");
+  const [letter, setLetter] = React.useState<string>("ALL");
 
   const letters = React.useMemo(() => {
-    const s = new Set<string>()
-    verbs.forEach((v) => s.add(getInitial(v.v1)))
-    return Array.from(s).sort()
-  }, [verbs])
+    const s = new Set<string>();
+    verbs.forEach((v) => s.add(getInitial(v.v1)));
+    return Array.from(s).sort();
+  }, [verbs]);
 
   const filtered = React.useMemo(() => {
-    const q = normalize(query.trim())
+    const q = normalize(query.trim());
     return verbs.filter((v) => {
-      if (letter !== "ALL" && getInitial(v.v1) !== letter) return false
-      if (!q) return true
+      if (letter !== "ALL" && getInitial(v.v1) !== letter) return false;
+      if (!q) return true;
       return (
         normalize(v.v1).includes(q) ||
         normalize(v.v2).includes(q) ||
         normalize(v.v3).includes(q) ||
         normalize(v.meaning).includes(q)
-      )
-    })
-  }, [verbs, query, letter])
+      );
+    });
+  }, [verbs, query, letter]);
 
   return (
     <div>
@@ -55,8 +55,10 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
             )}
           </div>
           <div className="rounded-lg bg-slate-100 px-3 py-2 text-center text-sm font-medium text-slate-700 md:min-w-[140px]">
-            <span className="text-brand-700">{filtered.length}</span> /{" "}
-            {verbs.length} từ
+            <span className="text-brand-700">
+              {Math.min(filtered.length, 360)}
+            </span>{" "}
+            / 360 từ
           </div>
         </div>
 
@@ -66,11 +68,7 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
               Tất cả
             </Chip>
             {letters.map((l) => (
-              <Chip
-                key={l}
-                active={letter === l}
-                onClick={() => setLetter(l)}
-              >
+              <Chip key={l} active={letter === l} onClick={() => setLetter(l)}>
                 {l}
               </Chip>
             ))}
@@ -83,11 +81,7 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
             Tất cả
           </Chip>
           {letters.map((l) => (
-            <Chip
-              key={l}
-              active={letter === l}
-              onClick={() => setLetter(l)}
-            >
+            <Chip key={l} active={letter === l} onClick={() => setLetter(l)}>
               {l}
             </Chip>
           ))}
@@ -146,7 +140,10 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filtered.map((v) => (
-                  <tr key={v.v1} className="group transition hover:bg-brand-50/40">
+                  <tr
+                    key={v.v1}
+                    className="group transition hover:bg-brand-50/40"
+                  >
                     <td className="px-4 py-3.5">
                       <Link
                         href={`/verbs/${getVerbSlug(v)}`}
@@ -179,7 +176,7 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
         </>
       )}
     </div>
-  )
+  );
 }
 
 function MiniCell({ label, value }: { label: string; value: string }) {
@@ -190,7 +187,7 @@ function MiniCell({ label, value }: { label: string; value: string }) {
       </div>
       <div className="truncate font-medium text-slate-900">{value}</div>
     </div>
-  )
+  );
 }
 
 function Chip({
@@ -198,9 +195,9 @@ function Chip({
   onClick,
   children,
 }: {
-  active: boolean
-  onClick: () => void
-  children: React.ReactNode
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
 }) {
   return (
     <button
@@ -209,10 +206,10 @@ function Chip({
         "min-w-[36px] shrink-0 rounded-lg border px-3 py-1.5 text-xs font-semibold transition",
         active
           ? "border-brand-600 bg-brand-600 text-white shadow-sm"
-          : "border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700"
+          : "border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700",
       )}
     >
       {children}
     </button>
-  )
+  );
 }
