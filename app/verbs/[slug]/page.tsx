@@ -1,11 +1,11 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, Volume2, BookOpen, Quote } from "lucide-react"
-import { allVerbs, getVerbBySlug, slugify } from "@/data/verbs"
+import { allVerbs, getVerbBySlug, getVerbSlug } from "@/data/verbs"
 import { buttonClasses } from "@/components/ui/button"
 
 export function generateStaticParams() {
-  return allVerbs.map((v) => ({ slug: slugify(v.v1) }))
+  return allVerbs.map((v) => ({ slug: getVerbSlug(v) }))
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
@@ -21,7 +21,7 @@ export default function VerbDetail({ params }: { params: { slug: string } }) {
   const v = getVerbBySlug(params.slug)
   if (!v) notFound()
 
-  const idx = allVerbs.findIndex((x) => slugify(x.v1) === params.slug)
+  const idx = allVerbs.findIndex((x) => getVerbSlug(x) === params.slug)
   const prev = idx > 0 ? allVerbs[idx - 1] : null
   const next = idx < allVerbs.length - 1 ? allVerbs[idx + 1] : null
 
@@ -100,7 +100,7 @@ export default function VerbDetail({ params }: { params: { slug: string } }) {
         <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-between">
           {prev ? (
             <Link
-              href={`/verbs/${slugify(prev.v1)}`}
+              href={`/verbs/${getVerbSlug(prev)}`}
               className="group flex flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-200 hover:shadow"
             >
               <ArrowLeft className="h-5 w-5 text-slate-400 group-hover:text-brand-600" />
@@ -118,7 +118,7 @@ export default function VerbDetail({ params }: { params: { slug: string } }) {
           )}
           {next ? (
             <Link
-              href={`/verbs/${slugify(next.v1)}`}
+              href={`/verbs/${getVerbSlug(next)}`}
               className="group flex flex-1 items-center justify-end gap-3 rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-200 hover:shadow"
             >
               <div className="text-right">

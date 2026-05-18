@@ -7,8 +7,12 @@ export type { Verb }
 
 export const allVerbs: Verb[] = [...v1, ...v2, ...v3, ...v4]
 
+export function getVerbSlug(v: Verb): string {
+  return v.slug ? slugify(v.slug) : slugify(v.v1)
+}
+
 export function getVerbBySlug(slug: string): Verb | undefined {
-  return allVerbs.find((v) => slugify(v.v1) === slug)
+  return allVerbs.find((v) => getVerbSlug(v) === slug)
 }
 
 export function slugify(input: string): string {

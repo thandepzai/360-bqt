@@ -9,7 +9,7 @@ import {
   Target,
   Zap,
 } from "lucide-react"
-import { allVerbs, slugify } from "@/data/verbs"
+import { allVerbs, getVerbSlug } from "@/data/verbs"
 import { siteConfig } from "@/lib/site"
 import { buttonClasses } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -127,7 +127,7 @@ export default function HomePage() {
             {featured.map((v) => (
               <Link
                 key={v.v1}
-                href={`/verbs/${slugify(v.v1)}`}
+                href={`/verbs/${getVerbSlug(v)}`}
                 className="card-hover group flex flex-col rounded-2xl border border-slate-200 bg-white p-6"
               >
                 <div className="flex items-center justify-between">

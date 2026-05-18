@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { Search, X } from "lucide-react"
 import type { Verb } from "@/data/verbs"
-import { slugify, getInitial } from "@/data/verbs"
+import { getVerbSlug, getInitial } from "@/data/verbs"
 import { cn, normalize } from "@/lib/utils"
 
 export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
@@ -105,7 +105,7 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
             {filtered.map((v) => (
               <li key={v.v1}>
                 <Link
-                  href={`/verbs/${slugify(v.v1)}`}
+                  href={`/verbs/${getVerbSlug(v)}`}
                   className="block rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition active:scale-[0.99]"
                 >
                   <div className="flex items-center justify-between">
@@ -149,7 +149,7 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
                   <tr key={v.v1} className="group transition hover:bg-brand-50/40">
                     <td className="px-4 py-3.5">
                       <Link
-                        href={`/verbs/${slugify(v.v1)}`}
+                        href={`/verbs/${getVerbSlug(v)}`}
                         className="font-heading font-bold text-slate-900 group-hover:text-brand-700"
                       >
                         {v.v1}
@@ -165,7 +165,7 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
                     <td className="px-4 py-3.5 text-slate-600">{v.meaning}</td>
                     <td className="px-4 py-3.5 text-right">
                       <Link
-                        href={`/verbs/${slugify(v.v1)}`}
+                        href={`/verbs/${getVerbSlug(v)}`}
                         className="text-xs font-semibold text-brand-600 hover:underline"
                       >
                         Chi tiết →
