@@ -38,23 +38,23 @@ export default function VerbDetail({ params }: { params: { slug: string } }) {
           </Link>
 
           <div className="mt-6 flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
+            <div className="w-full md:w-auto">
               <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
                 Irregular Verb
               </span>
-              <h1 className="mt-3 font-heading text-5xl font-extrabold text-slate-900 md:text-7xl">
+              <h1 className="mt-3 break-words font-heading text-4xl font-extrabold text-slate-900 sm:text-5xl md:text-7xl">
                 {v.v1}
               </h1>
               <div className="mt-2 flex items-center gap-2 text-slate-500">
-                <Volume2 className="h-4 w-4" />
-                <span className="font-mono">{v.ipa}</span>
+                <Volume2 className="h-4 w-4 shrink-0" />
+                <span className="break-all font-mono text-sm sm:text-base">{v.ipa}</span>
               </div>
             </div>
-            <div className="rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-slate-200 md:max-w-md">
+            <div className="w-full rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-slate-200 md:max-w-md">
               <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Nghĩa tiếng Việt
               </div>
-              <p className="mt-1 text-lg font-medium text-slate-900">
+              <p className="mt-1 text-base font-medium text-slate-900 sm:text-lg">
                 {v.meaning}
               </p>
             </div>
@@ -62,28 +62,28 @@ export default function VerbDetail({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      <section className="container py-10">
-        <div className="grid gap-4 md:grid-cols-3">
+      <section className="container py-8 md:py-10">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
           <FormCard label="Nguyên mẫu (V1)" value={v.v1} accent="from-brand-500 to-blue-600" />
           <FormCard label="Quá khứ (V2)" value={v.v2} accent="from-indigo-500 to-violet-600" />
           <FormCard label="Quá khứ phân từ (V3)" value={v.v3} accent="from-fuchsia-500 to-pink-600" />
         </div>
 
         {v.example && (
-          <div className="mt-8 rounded-2xl border border-brand-100 bg-brand-50/50 p-6 md:p-8">
+          <div className="mt-6 rounded-2xl border border-brand-100 bg-brand-50/50 p-5 sm:p-6 md:mt-8 md:p-8">
             <div className="flex items-center gap-2 text-brand-700">
               <Quote className="h-5 w-5" />
               <span className="text-sm font-semibold uppercase tracking-wider">
                 Ví dụ
               </span>
             </div>
-            <p className="mt-3 font-heading text-xl font-medium leading-relaxed text-slate-800 md:text-2xl">
+            <p className="mt-3 break-words font-heading text-lg font-medium leading-relaxed text-slate-800 sm:text-xl md:text-2xl">
               {highlight(v.example, [v.v1, v.v2, v.v3])}
             </p>
           </div>
         )}
 
-        <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 md:p-8">
+        <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 md:mt-8 md:p-8">
           <div className="flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-slate-500" />
             <span className="text-sm font-semibold uppercase tracking-wider text-slate-600">
@@ -156,7 +156,7 @@ function FormCard({
   accent: string
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-lg">
+    <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-lg sm:p-6">
       <div
         className={`absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br ${accent} opacity-20 blur-2xl transition group-hover:opacity-30`}
       />
@@ -164,7 +164,7 @@ function FormCard({
         <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
           {label}
         </div>
-        <div className="mt-2 font-heading text-3xl font-bold text-slate-900 md:text-4xl">
+        <div className="mt-2 break-words font-heading text-2xl font-bold text-slate-900 sm:text-3xl md:text-4xl">
           {value}
         </div>
       </div>

@@ -35,17 +35,17 @@ export default function HomePage() {
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
 
-            <h1 className="font-heading text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="font-heading text-[2rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl">
               Chinh phục <span className="gradient-text">360 động từ</span>
               <br className="hidden sm:block" /> bất quy tắc tiếng Anh
             </h1>
 
-            <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg sm:leading-8">
+            <p className="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-lg sm:leading-8">
               Tra cứu nhanh, học có hệ thống và ghi nhớ lâu hơn với phiên âm,
               nghĩa tiếng Việt và ví dụ thực tế cho từng động từ.
             </p>
 
-            <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
+            <div className="mt-2 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
               <Link href="/verbs" className={buttonClasses("gradient", "lg")}>
                 Bắt đầu học ngay
                 <ArrowRight className="h-4 w-4" />
@@ -55,7 +55,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-10 grid w-full max-w-3xl grid-cols-3 divide-x divide-slate-200 rounded-2xl border border-slate-100 bg-white/80 p-4 shadow-sm backdrop-blur">
+            <div className="mt-8 grid w-full max-w-3xl grid-cols-3 divide-x divide-slate-200 rounded-2xl border border-slate-100 bg-white/80 p-3 shadow-sm backdrop-blur sm:p-4">
               <Stat n="360+" label="Động từ" />
               <Stat n="100%" label="Miễn phí" />
               <Stat n="Mọi lúc" label="Mọi nơi" />
@@ -162,15 +162,15 @@ export default function HomePage() {
 
       <section className="container py-16 md:py-24">
         <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-blue-600 to-indigo-700 p-1 shadow-xl">
-          <div className="relative overflow-hidden rounded-[22px] bg-gradient-to-br from-brand-600 via-blue-600 to-indigo-700 px-8 py-14 text-center md:px-16 md:py-20">
+          <div className="relative overflow-hidden rounded-[22px] bg-gradient-to-br from-brand-600 via-blue-600 to-indigo-700 px-6 py-12 text-center md:px-16 md:py-20">
             <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
             <div className="absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
 
-            <GraduationCap className="mx-auto h-12 w-12 text-white/90" />
-            <h2 className="mt-4 font-heading text-3xl font-bold text-white md:text-4xl">
+            <GraduationCap className="mx-auto h-10 w-10 text-white/90 sm:h-12 sm:w-12" />
+            <h2 className="mt-4 font-heading text-2xl font-bold text-white sm:text-3xl md:text-4xl">
               Học tiếng Anh có lộ trình cùng MapStudy
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white/90">
+            <p className="mx-auto mt-4 max-w-xl text-sm text-white/90 sm:text-base">
               Hệ thống bài giảng, luyện đề và đội ngũ giáo viên giúp bạn tự tin
               chinh phục mọi kỳ thi quan trọng.
             </p>
@@ -194,11 +194,11 @@ export default function HomePage() {
 
 function Stat({ n, label }: { n: string; label: string }) {
   return (
-    <div className="flex flex-col items-center px-2">
-      <div className="font-heading text-2xl font-bold text-slate-900 md:text-3xl">
+    <div className="flex flex-col items-center px-1 sm:px-2">
+      <div className="font-heading text-xl font-bold text-slate-900 sm:text-2xl md:text-3xl">
         {n}
       </div>
-      <div className="mt-1 text-xs uppercase tracking-wider text-slate-500">
+      <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500 sm:text-xs">
         {label}
       </div>
     </div>

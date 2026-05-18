@@ -33,13 +33,13 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
 
   return (
     <div>
-      <div className="sticky top-16 z-20 -mx-2 mb-6 bg-white/80 px-2 py-3 backdrop-blur-md">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center">
+      <div className="sticky top-16 z-20 -mx-4 mb-6 bg-white/90 px-4 py-3 backdrop-blur-md sm:-mx-5 sm:px-5 lg:-mx-2 lg:px-2">
+        <div className="flex flex-col gap-2.5 md:flex-row md:items-center md:gap-3">
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
-              placeholder="Tìm theo V1, V2, V3 hoặc nghĩa tiếng Việt..."
+              placeholder="Tìm V1, V2, V3 hoặc nghĩa..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-10 text-sm shadow-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
@@ -60,7 +60,7 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
           </div>
         </div>
 
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <div className="mt-3 -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 sm:-mx-5 sm:px-5 lg:-mx-0 lg:flex-wrap lg:px-0">
           <Chip active={letter === "ALL"} onClick={() => setLetter("ALL")}>
             Tất cả
           </Chip>
@@ -81,58 +81,96 @@ export function VerbsBrowser({ verbs }: { verbs: Verb[] }) {
           <p className="text-slate-500">Không tìm thấy động từ phù hợp.</p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <table className="w-full text-sm">
-            <thead className="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
-              <tr>
-                <th className="px-4 py-3">V1 / Phiên âm</th>
-                <th className="hidden px-4 py-3 md:table-cell">V2</th>
-                <th className="hidden px-4 py-3 md:table-cell">V3</th>
-                <th className="px-4 py-3">Nghĩa</th>
-                <th className="px-4 py-3 text-right"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {filtered.map((v) => (
-                <tr key={v.v1} className="group transition hover:bg-brand-50/40">
-                  <td className="px-4 py-3.5">
-                    <Link
-                      href={`/verbs/${slugify(v.v1)}`}
-                      className="font-heading font-bold text-slate-900 group-hover:text-brand-700"
-                    >
-                      {v.v1}
-                    </Link>
-                    <div className="text-xs text-slate-400">{v.ipa}</div>
-                    <div className="mt-1 flex gap-3 text-xs text-slate-600 md:hidden">
-                      <span>
-                        V2: <span className="font-medium">{v.v2}</span>
-                      </span>
-                      <span>
-                        V3: <span className="font-medium">{v.v3}</span>
-                      </span>
+        <>
+          {/* Mobile: card list */}
+          <ul className="space-y-3 md:hidden">
+            {filtered.map((v) => (
+              <li key={v.v1}>
+                <Link
+                  href={`/verbs/${slugify(v.v1)}`}
+                  className="block rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition active:scale-[0.99]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-heading text-lg font-bold text-slate-900">
+                        {v.v1}
+                      </div>
+                      <div className="text-xs text-slate-400">{v.ipa}</div>
                     </div>
-                  </td>
-                  <td className="hidden px-4 py-3.5 font-medium text-slate-700 md:table-cell">
-                    {v.v2}
-                  </td>
-                  <td className="hidden px-4 py-3.5 font-medium text-slate-700 md:table-cell">
-                    {v.v3}
-                  </td>
-                  <td className="px-4 py-3.5 text-slate-600">{v.meaning}</td>
-                  <td className="px-4 py-3.5 text-right">
-                    <Link
-                      href={`/verbs/${slugify(v.v1)}`}
-                      className="text-xs font-semibold text-brand-600 hover:underline"
-                    >
+                    <span className="text-xs font-semibold text-brand-600">
                       Chi tiết →
-                    </Link>
-                  </td>
+                    </span>
+                  </div>
+                  <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+                    <MiniCell label="V1" value={v.v1} />
+                    <MiniCell label="V2" value={v.v2} />
+                    <MiniCell label="V3" value={v.v3} />
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-sm text-slate-600">
+                    {v.meaning}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Desktop: table */}
+          <div className="hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm md:block">
+            <table className="w-full text-sm">
+              <thead className="bg-slate-50 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <tr>
+                  <th className="px-4 py-3">V1 / Phiên âm</th>
+                  <th className="px-4 py-3">V2</th>
+                  <th className="px-4 py-3">V3</th>
+                  <th className="px-4 py-3">Nghĩa</th>
+                  <th className="px-4 py-3 text-right"></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {filtered.map((v) => (
+                  <tr key={v.v1} className="group transition hover:bg-brand-50/40">
+                    <td className="px-4 py-3.5">
+                      <Link
+                        href={`/verbs/${slugify(v.v1)}`}
+                        className="font-heading font-bold text-slate-900 group-hover:text-brand-700"
+                      >
+                        {v.v1}
+                      </Link>
+                      <div className="text-xs text-slate-400">{v.ipa}</div>
+                    </td>
+                    <td className="px-4 py-3.5 font-medium text-slate-700">
+                      {v.v2}
+                    </td>
+                    <td className="px-4 py-3.5 font-medium text-slate-700">
+                      {v.v3}
+                    </td>
+                    <td className="px-4 py-3.5 text-slate-600">{v.meaning}</td>
+                    <td className="px-4 py-3.5 text-right">
+                      <Link
+                        href={`/verbs/${slugify(v.v1)}`}
+                        className="text-xs font-semibold text-brand-600 hover:underline"
+                      >
+                        Chi tiết →
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
+    </div>
+  )
+}
+
+function MiniCell({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+      <div className="text-[9px] font-semibold uppercase tracking-wider text-slate-400">
+        {label}
+      </div>
+      <div className="truncate font-medium text-slate-900">{value}</div>
     </div>
   )
 }
@@ -150,7 +188,7 @@ function Chip({
     <button
       onClick={onClick}
       className={cn(
-        "min-w-[36px] rounded-lg border px-3 py-1.5 text-xs font-semibold transition",
+        "min-w-[36px] shrink-0 rounded-lg border px-3 py-1.5 text-xs font-semibold transition",
         active
           ? "border-brand-600 bg-brand-600 text-white shadow-sm"
           : "border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700"

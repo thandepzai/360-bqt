@@ -42,30 +42,32 @@ export function Practice({ verbs }: { verbs: Verb[] }) {
       <div
         onClick={() => setFlipped((f) => !f)}
         className={cn(
-          "relative h-72 cursor-pointer select-none rounded-3xl border border-slate-200 bg-white p-8 shadow-md transition-all duration-300 hover:shadow-lg md:h-80",
+          "relative min-h-[18rem] cursor-pointer select-none rounded-3xl border border-slate-200 bg-white p-5 shadow-md transition-all duration-300 hover:shadow-lg sm:p-8 md:min-h-[20rem]",
           flipped && "ring-2 ring-brand-200"
         )}
       >
         {!flipped ? (
-          <div className="flex h-full flex-col items-center justify-center text-center">
+          <div className="flex h-full min-h-[15rem] flex-col items-center justify-center text-center">
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
               Động từ nguyên mẫu
             </div>
-            <h3 className="mt-3 font-heading text-5xl font-extrabold text-slate-900 md:text-6xl">
+            <h3 className="mt-3 break-words font-heading text-4xl font-extrabold text-slate-900 sm:text-5xl md:text-6xl">
               {v.v1}
             </h3>
-            <div className="mt-2 font-mono text-sm text-slate-500">{v.ipa}</div>
+            <div className="mt-2 break-all font-mono text-sm text-slate-500">
+              {v.ipa}
+            </div>
             <div className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-4 py-1.5 text-xs font-medium text-slate-600">
               <RotateCw className="h-3.5 w-3.5" /> Bấm để xem đáp án
             </div>
           </div>
         ) : (
-          <div className="flex h-full flex-col justify-between">
+          <div className="flex h-full min-h-[15rem] flex-col justify-between gap-4">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-brand-600">
+              <div className="break-all text-xs font-semibold uppercase tracking-wider text-brand-600">
                 {v.v1} • {v.ipa}
               </div>
-              <p className="mt-2 text-lg font-medium text-slate-900">
+              <p className="mt-2 text-base font-medium text-slate-900 sm:text-lg">
                 {v.meaning}
               </p>
             </div>
@@ -75,7 +77,7 @@ export function Practice({ verbs }: { verbs: Verb[] }) {
               <Cell label="V3" value={v.v3} />
             </div>
             {v.example && (
-              <p className="mt-4 text-sm italic text-slate-600">
+              <p className="text-sm italic text-slate-600">
                 "{v.example}"
               </p>
             )}
@@ -83,7 +85,7 @@ export function Practice({ verbs }: { verbs: Verb[] }) {
         )}
       </div>
 
-      <div className="mt-6 flex justify-center gap-3">
+      <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-center sm:gap-3">
         <button
           onClick={() => setFlipped((f) => !f)}
           className={buttonClasses("outline", "lg")}
